@@ -1,0 +1,123 @@
+<?php
+include '../header.php';
+include '../database/db.class.php';
+
+$db = new db('usuario');
+$data = null;
+
+if (!empty($_POST)) {
+    try {
+        $errors = [];
+
+        //  var_dump($_POST);
+        //  exit;
+
+        if (empty($_POST['nome'])) {
+            $errors[] = 'O nome é obrigatório';
+        }
+
+        if (empty($_POST['telefone'])) {
+            $errors[] = 'O telefone é obrigatório';
+        }
+
+        if (empty($_POST['email'])) {
+            $errors[] = 'O email é obrigatório';
+        }
+        
+        if (empty($_POST['login'])) {
+            $errors[] = 'O login é obrigatório';
+        }
+
+        if (empty($_POST['id'])) {
+            if ($_POST['senha'] === $_POST['c_senha']) {
+                $_POST['senha'] = password_hash(
+                    $_POST['senha'],
+                    PASSWORD_BCRYPT
+                );
+
+                unset($_POST['c_senha'], $_POST['id']); //remove os campos do vetor $_POST
+                $db->store($_POST);
+                echo 'Registro Salvo com sucesso!';
+            }
+        } else {
+            if ($_POST['senha'] === $_POST['c_senha']) {
+                $_POST['senha'] = password_hash(
+                    $_POST['senha'],
+                    PASSWORD_BCRYPT
+                );
+                unset($_POST['c_senha']); //remove o campo do vetor $_POST
+
+                $db->update($_POST);
+
+                echo 'Registro Atualizado com sucesso!';
+            }
+        }
+
+        echo "<script>
+            setTimeout(
+                ()=> window.location.href = 'UsuarioList.php', 2000
+            );
+        </script>";
+    } catch (Exception $e) {
+        var_dump($errors, $e->getMessage());
+        exit();
+    }
+}
+
+if (!empty($_GET['id'])) {
+    $data = $db->find($_GET['id']);
+    //  var_dump($data);
+    // exit;
+}
+?>
+
+
+<h3>Formulário do Usuário</h3>
+<form action="" method="post">
+    <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
+
+    <div class="row">
+        <div class="col-6">
+            <label for="" class="form-label">Nome</label>
+            <input class="form-control" type="text" name="nome" value="<?= $data->nome ?? '' ?>">
+        </div>
+
+        <div class="col-6">
+            <label for="" class="form-label">Telefone</label>
+            <input class="form-control" type="text" name="telefone" value="<?= $data->telefone ?? '' ?>">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label for="" class="form-label">Email</label>
+            <input class="form-control" type="text" name="email" value="<?= $data->email ?? '' ?>">
+        </div>
+        <div class="col-6">
+            <label for="" class="form-label">Login</label>
+            <input class="form-control" type="text" name="login" value="<?= $data->login ?? '' ?>">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label for="" class="form-label">Senha</label>
+            <input class="form-control" type="password" name="senha">
+        </div>
+        <div class="col-6">
+            <label for="" class="form-label">Confirmar Senha</label>
+            <input class="form-control" type="password" name="c_senha">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col mt-4">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="./UsuarioList.php" class="btn btn-primary">Voltar</a>
+        </div>
+    </div>
+
+</form>
+
+<?php include '../footer.php';
+?>
