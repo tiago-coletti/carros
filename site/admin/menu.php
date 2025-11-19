@@ -29,7 +29,11 @@ if (!file_exists('main.php') && file_exists('../main.php')) {
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="<?=$path?>categoria/CategoriaList.php">Marcas</a>
+          <a class="nav-link" href="<?=$path?>modelo/ModeloList.php">Modelos</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?=$path?>marca/MarcaList.php">Marcas</a>
         </li>
 
       </ul>

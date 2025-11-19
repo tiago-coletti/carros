@@ -33,8 +33,23 @@ $db->checkLogin();
                     <p class="card-text">Cadastre as fabricantes e marcas de carros.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./categoria/CategoriaList.php" class="btn btn-warning text-white">Gerenciar Marcas</a>
-                        <a href="./categoria/CategoriaForm.php" class="btn btn-outline-warning">Nova Marca</a>
+                        <a href="./categoria/MarcaForm.php" class="btn btn-warning text-white">Gerenciar Marcas</a>
+                        <a href="./categoria/MarcaForm.php" class="btn btn-outline-warning">Nova Marca</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body border-start border-warning border-4">
+                    <h5 class="card-title text-warning fw-bold">Modelos</h5>
+                    <p class="card-text">Cadastre os diferentes modelos das marcas.</p>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="./categoria/ModeloList.php" class="btn btn-warning text-white">Gerenciar Modelos</a>
+                        <a href="./categoria/ModeloForm.php" class="btn btn-outline-warning">Novo Modelo</a>
                     </div>
                 </div>
             </div>
