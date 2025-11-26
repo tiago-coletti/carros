@@ -1,6 +1,6 @@
 <?php
 include '../header.php';
-include '../database/db.class.php';
+include '../db.class.php';
 
 $db = new db('modelo');
 $dbMarca = new db('marca');
@@ -20,6 +20,14 @@ if (!empty($_POST)) {
 
         if (empty($_POST['nome_modelo'])) {
             throw new Exception('O nome do modelo é obrigatório');
+        }
+
+        if (empty($_POST['ano_lancamento'])) {
+            throw new Exception('O ano de lançamento é obrigatório');
+        }
+
+        if (empty($_POST['combustivel'])) {
+            throw new Exception('O combustível é obrigatório');
         }
 
         if (empty($_POST['id'])) {
@@ -75,6 +83,18 @@ if (!empty($_GET['id'])) {
         <div class="col-4">
             <label for="" class="form-label">Nome do Modelo</label>
             <input class="form-control" type="text" name="nome_modelo" value="<?= $data->nome_modelo ?? '' ?>" required>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <label for="" class="form-label">Ano de Lançamento</label>
+            <input class="form-control" type="number" name="ano_lancamento" value="<?= $data->ano_lancamento ?? '' ?>" required>
+        </div>
+
+        <div class="col-6">
+            <label for="" class="form-label">Combustível</label>
+            <input class="form-control" type="text" name="combustivel" value="<?= $data->combustivel ?? '' ?>" required>
         </div>
     </div>
 

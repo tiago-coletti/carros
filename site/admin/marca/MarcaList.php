@@ -1,6 +1,6 @@
 <?php
 include '../header.php';
-include '../database/db.class.php';
+include '../db.class.php';
 
 $db = new db('marca');
 $db->checkLogin();
@@ -26,6 +26,8 @@ if (!empty($_POST)) {
             <select name="tipo" class="form-select">
                 <option value="nome_marca">Nome</option>
                 <option value="pais_origem">País</option>
+                <option value="ano_fundacao">Ano</option>
+                <option value="site_oficial">Site</option>
             </select>
         </div>
 
@@ -48,6 +50,8 @@ if (!empty($_POST)) {
                     <th scope="col">#</th>
                     <th scope="col">Nome da Marca</th>
                     <th scope="col">País de Origem</th>
+                    <th scope="col">Ano</th>
+                    <th scope="col">Site</th>
                     <th scope="col">Ação</th>
                     <th scope="col">Ação</th>
                 </tr>
@@ -61,6 +65,8 @@ if (!empty($_POST)) {
                             <th scope='row'>$item->id</th>
                             <td>$item->nome_marca</td>
                             <td>$item->pais_origem</td>
+                            <td>$item->ano_fundacao</td>
+                            <td>$item->site_oficial</td>
                             <td><a href='./MarcaForm.php?id=$item->id' class='btn btn-warning btn-sm'>Editar</a></td>
                             <td><a 
                                  href='./MarcaList.php?id=$item->id'
@@ -70,7 +76,7 @@ if (!empty($_POST)) {
                         </tr>";
                     }
                 } else {
-                     echo "<tr><td colspan='5' class='text-center'>Nenhuma marca encontrada.</td></tr>";
+                     echo "<tr><td colspan='7' class='text-center'>Nenhuma marca encontrada.</td></tr>";
                 }
                 ?>
             </tbody>

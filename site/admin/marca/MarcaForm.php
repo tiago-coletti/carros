@@ -1,21 +1,23 @@
 <?php
 include '../header.php';
-include '../database/db.class.php';
+include '../db.class.php';
 
-$db = new db('modelo');
+$db = new db('marca');
 $data = null;
 
 if (!empty($_POST)) {
     try {
         $errors = [];
 
-        if (empty($_POST['tipo_carroceria'])) {
-            $errors[] = 'O tipo do veículo é obrigatório';
+        if (empty($_POST['nome_marca'])) {
+            $errors[] = 'O nome da marca é obrigatório';
         }
 
-        if (empty($_POST['nome_modelo'])) {
-            $errors[] = 'O nome do modelo é obrigatório';
+        if (empty($_POST['pais_origem'])) {
+            $errors[] = 'O país de origem é obrigatório';
         }
+
+        // Validações opcionais para os novos campos podem ser adicionadas aqui
 
         if (empty($_POST['id'])) {
             unset($_POST['id']); 
@@ -30,7 +32,7 @@ if (!empty($_POST)) {
 
         echo "<script>
             setTimeout(
-                ()=> window.location.href = 'ModeloList.php', 2000
+                ()=> window.location.href = 'MarcaList.php', 2000
             );
         </script>";
     } catch (Exception $e) {
@@ -44,26 +46,38 @@ if (!empty($_GET['id'])) {
 }
 ?>
 
-<h3>Formulário de Modelo de Veículo</h3>
+<h3>Formulário de Marca</h3>
 <form action="" method="post">
     <input type="hidden" name="id" value="<?= $data->id ?? '' ?>">
 
     <div class="row">
-        <div class="col-4">
-            <label for="" class="form-label">Tipo de Veículo</label>
-            <input class="form-control" type="text" name="tipo_carroceria" value="<?= $data->tipo_carroceria ?? '' ?>">
+        <div class="col-6">
+            <label for="" class="form-label">Nome da Marca</label>
+            <input class="form-control" type="text" name="nome_marca" value="<?= $data->nome_marca ?? '' ?>">
         </div>
 
-        <div class="col-4">
-            <label for="" class="form-label">Nome do Modelo</label>
-            <input class="form-control" type="text" name="nome_modelo" value="<?= $data->nome_modelo ?? '' ?>">
+        <div class="col-6">
+            <label for="" class="form-label">País de Origem</label>
+            <input class="form-control" type="text" name="pais_origem" value="<?= $data->pais_origem ?? '' ?>">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <label for="" class="form-label">Ano de Fundação</label>
+            <input class="form-control" type="number" name="ano_fundacao" value="<?= $data->ano_fundacao ?? '' ?>">
+        </div>
+
+        <div class="col-6">
+            <label for="" class="form-label">Site Oficial</label>
+            <input class="form-control" type="text" name="site_oficial" value="<?= $data->site_oficial ?? '' ?>">
         </div>
     </div>
 
     <div class="row">
         <div class="col mt-4">
             <button type="submit" class="btn btn-success">Salvar</button>
-            <a href="./ModeloList.php" class="btn btn-primary">Voltar</a>
+            <a href="./MarcaList.php" class="btn btn-primary">Voltar</a>
         </div>
     </div>
 

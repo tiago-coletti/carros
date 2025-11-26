@@ -163,7 +163,7 @@ class db
 
         if (empty($_SESSION['login'])) {
             session_destroy();
-            header('Location: ../index.php?error=Sessao Expirada!');
+            header('Location: ../login.php?error=Sessao Expirada!');
             exit;
         }
     }

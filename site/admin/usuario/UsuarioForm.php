@@ -1,6 +1,6 @@
 <?php
 include '../header.php';
-include '../database/db.class.php';
+include '../db.class.php';
 
 $db = new db('usuario');
 $data = null;

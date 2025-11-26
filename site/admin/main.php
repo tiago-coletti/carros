@@ -1,6 +1,6 @@
 <?php
 include './header.php';
-include './database/db.class.php';
+include './db.class.php';
 
 $db = new db('usuario');
 $db->checkLogin();
@@ -33,8 +33,8 @@ $db->checkLogin();
                     <p class="card-text">Cadastre as fabricantes e marcas de carros.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./categoria/MarcaForm.php" class="btn btn-warning text-white">Gerenciar Marcas</a>
-                        <a href="./categoria/MarcaForm.php" class="btn btn-outline-warning">Nova Marca</a>
+                        <a href="./marca/MarcaList.php" class="btn btn-warning text-white">Gerenciar Marcas</a>
+                        <a href="./marca/MarcaForm.php" class="btn btn-outline-warning">Nova Marca</a>
                     </div>
                 </div>
             </div>
@@ -43,13 +43,13 @@ $db->checkLogin();
 
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
-                <div class="card-body border-start border-warning border-4">
-                    <h5 class="card-title text-warning fw-bold">Modelos</h5>
+                <div class="card-body border-start border-danger border-4">
+                    <h5 class="card-title text-danger fw-bold">Modelos</h5>
                     <p class="card-text">Cadastre os diferentes modelos das marcas.</p>
                     
                     <div class="d-grid gap-2">
-                        <a href="./categoria/ModeloList.php" class="btn btn-warning text-white">Gerenciar Modelos</a>
-                        <a href="./categoria/ModeloForm.php" class="btn btn-outline-warning">Novo Modelo</a>
+                        <a href="./modelo/ModeloList.php" class="btn btn-danger text-white">Gerenciar Modelos</a>
+                        <a href="./modelo/ModeloForm.php" class="btn btn-outline-danger">Novo Modelo</a>
                     </div>
                 </div>
             </div>
