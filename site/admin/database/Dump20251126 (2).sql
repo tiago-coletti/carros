@@ -29,8 +29,18 @@ CREATE TABLE `marca` (
   `ano_fundacao` int DEFAULT NULL,
   `site_oficial` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `marca`
+--
+
+LOCK TABLES `marca` WRITE;
+/*!40000 ALTER TABLE `marca` DISABLE KEYS */;
+INSERT INTO `marca` VALUES (3,'Toyota','Japão',1900,'toyota.com'),(4,'Fiat','Itália',1934,'fiat.com');
+/*!40000 ALTER TABLE `marca` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `modelo`
@@ -49,8 +59,18 @@ CREATE TABLE `modelo` (
   PRIMARY KEY (`id`),
   KEY `fk_modelo_marca` (`marca_id`),
   CONSTRAINT `fk_modelo_marca` FOREIGN KEY (`marca_id`) REFERENCES `marca` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `modelo`
+--
+
+LOCK TABLES `modelo` WRITE;
+/*!40000 ALTER TABLE `modelo` DISABLE KEYS */;
+INSERT INTO `modelo` VALUES (4,'Corolla Cross','SUV',3,2022,'Flex'),(5,'Uno','Hatch Compacto',4,1992,'Gasolina');
+/*!40000 ALTER TABLE `modelo` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `usuario`
@@ -72,6 +92,16 @@ CREATE TABLE `usuario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Administrador','00 0000-0000','admin@loja.com','admin','$2y$10$/TcKWNIP7DCibMVQjQS2wu/mrK.vtQGzf3p/1nMxz4pOOhgJZ0hei');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `veiculo`
 --
 
@@ -90,8 +120,18 @@ CREATE TABLE `veiculo` (
   UNIQUE KEY `placa` (`placa`),
   KEY `fk_veiculo_modelo` (`modelo_id`),
   CONSTRAINT `fk_veiculo_modelo` FOREIGN KEY (`modelo_id`) REFERENCES `modelo` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `veiculo`
+--
+
+LOCK TABLES `veiculo` WRITE;
+/*!40000 ALTER TABLE `veiculo` DISABLE KEYS */;
+INSERT INTO `veiculo` VALUES (4,'AAA-7555','Verde',2000,30000.00,'Vendido',5),(6,'AAA-755sa','azul',2222,200000.00,'Disponível',4);
+/*!40000 ALTER TABLE `veiculo` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -102,4 +142,4 @@ CREATE TABLE `veiculo` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-26 14:19:03
+-- Dump completed on 2025-11-26 22:47:24
